@@ -1,12 +1,13 @@
 import oauth2 as oauth
 import urllib2 as urllib
+import pprint
 
 # See assignment1.html instructions or README for how to get these credentials
 
-api_key = "<Enter api key>"
-api_secret = "<Enter api secret>"
-access_token_key = "<Enter your access token key here>"
-access_token_secret = "<Enter your access token secret here>"
+api_key = "NHqpmTo9FWrwFHRENJ2hCdFvb"
+api_secret = "QSCndRATjhjryvBjRiXEKkGnz8W2Hsqi3N2eVNE2XFx6co6lMa"
+access_token_key = "21014786-OGVfSgNfHX9h2RF4I4s8EmGdlgwdfvubbRhDRTpM8"
+access_token_secret = "4wKILxrmuArkdmtwFhuzQGe4CLCWa1HHAL5AWiYqt4kFa"
 
 _debug = 0
 
@@ -33,21 +34,16 @@ def twitterreq(url, method, parameters):
                                              parameters=parameters)
 
   req.sign_request(signature_method_hmac_sha1, oauth_consumer, oauth_token)
-
   headers = req.to_header()
-
   if http_method == "POST":
     encoded_post_data = req.to_postdata()
   else:
     encoded_post_data = None
     url = req.to_url()
-
   opener = urllib.OpenerDirector()
   opener.add_handler(http_handler)
   opener.add_handler(https_handler)
-
   response = opener.open(url, encoded_post_data)
-
   return response
 
 def fetchsamples():
@@ -58,4 +54,4 @@ def fetchsamples():
     print line.strip()
 
 if __name__ == '__main__':
-  fetchsamples()
+  fetchsamples()  
