@@ -19,18 +19,14 @@ def reducer(key, list_of_values):
         orders_to_join[i - 1] = list_of_values[0]
         items_joining[i - 1] = list_of_values[i]
 
-    joined_records = []
     for key in orders_to_join.iterkeys():
-        joined_records.append(orders_to_join[key] + items_joining[key])
-    # pp(joined_records)
-
-    mr.emit(joined_records)
+        mr.emit(orders_to_join[key] + items_joining[key])
 
 input_data = open(sys.argv[1],'r')
 
 mr.execute(input_data, mapper, reducer)
 
-# pp(len(mr.result))
+# pp(len(mr.result[0]))
 
 
 # for line in input_data:
