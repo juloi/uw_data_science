@@ -11,10 +11,11 @@ def reducer(key, list_of_values):
     friendships = {}
     friendships[key] = list_of_values[0]
 
-    for val in friendships.itervalues():
+    for key, val in friendships.iteritems():
         try:
             friendships[val]
         except KeyError:
+            mr.emit(key)
             mr.emit(val)
 
 data = open(sys.argv[1], 'r')
