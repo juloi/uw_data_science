@@ -5,7 +5,7 @@ from pprint import pprint as pp
 mr = MapReduce.MapReduce()
 
 def mapper(record):
-    mr.emit_intermediate((record[0], record[1]), (record[1], record[0]))
+    mr.emit_intermediate((record[1], record[0]), (record[0], record[1]))
 
 def reducer(key, list_of_values):
     friendships = {}
